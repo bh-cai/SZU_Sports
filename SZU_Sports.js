@@ -1408,7 +1408,7 @@
             <div id="venue-selection" style="margin-bottom: 12px; display: ${CONFIG.SPORT === '羽毛球' ? 'block' : 'none'};">
                 <label style="font-size: ${isMobile ? '14px' : '12px'}; display: block; margin-bottom: 3px;">🏟️ 优先场馆:</label>
                 <select id="preferred-venue" style="${inputBaseStyle}">
-                    <option value="运动广场东馆羽毛球场" ${CONFIG.PREFERRED_VENUE === '至畅' ? 'selected' : ''}>🏆 运动广场东馆羽毛球场</option>
+                    <option value="运动广场东馆羽毛球场" ${CONFIG.PREFERRED_VENUE === '运动广场东馆羽毛球场' ? 'selected' : ''}>🏸 运动广场东馆羽毛球场</option>
                     <option value="至畅" ${CONFIG.PREFERRED_VENUE === '至畅' ? 'selected' : ''}>🏆 至畅体育馆</option>
                     <option value="至快" ${CONFIG.PREFERRED_VENUE === '至快' ? 'selected' : ''}>⚡ 至快体育馆</option>
                     <option value="全部" ${CONFIG.PREFERRED_VENUE === '全部' ? 'selected' : ''}>🔄 全部场馆</option>
@@ -2946,3 +2946,4 @@
     }
 
 })();
+
