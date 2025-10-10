@@ -1009,6 +1009,7 @@
 
     // 场馆代码映射
     const VENUE_CODES = {
+        "运动广场东馆羽毛球场": "406" 
         "至畅": "104",
         "至快": "111"
     };
@@ -1022,7 +1023,7 @@
         TARGET_DATE: getTomorrowDate(), // 已经设置为明天
         SPORT: "羽毛球",
         CAMPUS: "丽湖",
-        PREFERRED_VENUE: "至畅",
+        PREFERRED_VENUE: "运动广场东馆羽毛球场",
         PREFERRED_TIMES: ["20:00-21:00", "21:00-22:00"],
         RETRY_INTERVAL: 1,
         MAX_RETRY_TIMES: 20000,
@@ -2348,7 +2349,7 @@
             }
 
             // 使用新的场馆代码映射
-            let venueCode = "104"; // 默认值
+            let venueCode = "406"; // 默认值
             for (const [venueName, code] of Object.entries(VENUE_CODES)) {
                 if (slotName.includes(venueName)) {
                     venueCode = code;
@@ -2946,4 +2947,5 @@
     }
 
 })();
+
 
