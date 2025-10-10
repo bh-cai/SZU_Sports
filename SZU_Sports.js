@@ -1023,7 +1023,7 @@
         TARGET_DATE: getTomorrowDate(), // 已经设置为明天
         SPORT: "羽毛球",
         CAMPUS: "丽湖",
-        PREFERRED_VENUE: "运动广场东馆羽毛球场",
+        PREFERRED_VENUE: "至畅",
         PREFERRED_TIMES: ["20:00-21:00", "21:00-22:00"],
         RETRY_INTERVAL: 1,
         MAX_RETRY_TIMES: 20000,
@@ -2947,5 +2947,6 @@
     }
 
 })();
+
 
 
