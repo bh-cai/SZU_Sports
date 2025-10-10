@@ -1009,6 +1009,7 @@
 
     // 场馆代码映射
     const VENUE_CODES = {
+        "运动广场东馆羽毛球场": "001",
         "至畅": "104",
         "至快": "111"
     };
@@ -1022,7 +1023,7 @@
         TARGET_DATE: getTomorrowDate(), // 已经设置为明天
         SPORT: "羽毛球",
         CAMPUS: "丽湖",
-        PREFERRED_VENUE: "至畅",
+        PREFERRED_VENUE: "运动广场东馆羽毛球场",
         PREFERRED_TIMES: ["20:00-21:00", "21:00-22:00"],
         RETRY_INTERVAL: 1,
         MAX_RETRY_TIMES: 20000,
@@ -1408,6 +1409,7 @@
             <div id="venue-selection" style="margin-bottom: 12px; display: ${CONFIG.SPORT === '羽毛球' ? 'block' : 'none'};">
                 <label style="font-size: ${isMobile ? '14px' : '12px'}; display: block; margin-bottom: 3px;">🏟️ 优先场馆:</label>
                 <select id="preferred-venue" style="${inputBaseStyle}">
+                    <option value="运动广场东馆羽毛球场" ${CONFIG.PREFERRED_VENUE === '运动广场东馆羽毛球场' ? 'selected' : ''}>🏸 运动广场东馆羽毛球场</option>
                     <option value="至畅" ${CONFIG.PREFERRED_VENUE === '至畅' ? 'selected' : ''}>🏆 至畅体育馆</option>
                     <option value="至快" ${CONFIG.PREFERRED_VENUE === '至快' ? 'selected' : ''}>⚡ 至快体育馆</option>
                     <option value="全部" ${CONFIG.PREFERRED_VENUE === '全部' ? 'selected' : ''}>🔄 全部场馆</option>
@@ -1982,7 +1984,7 @@
 
         // 羽毛球场馆验证
         if (CONFIG.SPORT === '羽毛球' && CONFIG.PREFERRED_VENUE) {
-            const validVenues = ['至畅', '至快', '全部'];
+            const validVenues = ['运动广场东馆羽毛球场','至畅', '至快', '全部'];
             if (!validVenues.includes(CONFIG.PREFERRED_VENUE)) {
                 errors.push('羽毛球场馆选择无效');
             }
@@ -2347,7 +2349,7 @@
             }
 
             // 使用新的场馆代码映射
-            let venueCode = "104"; // 默认值
+            let venueCode = "001"; // 默认值
             for (const [venueName, code] of Object.entries(VENUE_CODES)) {
                 if (slotName.includes(venueName)) {
                     venueCode = code;
