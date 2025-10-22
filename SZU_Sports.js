@@ -2459,6 +2459,26 @@
             }
         }
 
+                // 检查是否在12:30-13:16之间  cbh
+        else if ((hours === 12 && minutes >= 30) || (hours === 13 && minutes < 16)) {
+            const targetTime = new Date();
+            targetTime.setHours(13, 15, 50, 0); // 设置为12:29:55
+
+            const currentTime = now.getTime();
+            const targetTimeMs = targetTime.getTime();
+
+            if (currentTime < targetTimeMs) {
+                const waitTime = targetTimeMs - currentTime;
+                const waitMinutes = Math.floor(waitTime / 60000);
+                const waitSeconds = Math.floor((waitTime % 60000) / 1000);
+                return {
+                    shouldWait: true,
+                    waitTime: waitTime,
+                    waitText: `${waitMinutes}分${waitSeconds}秒`
+                };
+            }
+        }
+
         return { shouldWait: false };
     }
 
@@ -2466,10 +2486,22 @@
     async function waitForBookingTime() {
         const timeCheck = checkBookingTime();
 
-        if (timeCheck.shouldWait) {
-            addLog(`⏰ 检测到当前时间在12:25-12:30之间`, 'info');
-            addLog(`🕐 将等待到12:29:55开始抢票 (还需等待${timeCheck.waitText})`, 'warning');
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
 
+        if (timeCheck.shouldWait) {
+            if (hours === 12 && minutes >= 25 && minutes < 30) {
+                addLog(`⏰ 检测到当前时间在12:25-12:30之间`, 'info');
+                addLog(`🕐 将等待到12:29:55开始抢票 (还需等待${timeCheck.waitText})`, 'warning');
+            }
+
+            else if ((hours === 12 && minutes >= 30) || (hours === 13 && minutes < 16)) {
+                addLog(`⏰ 检测到当前时间在12:30-13:16之间`, 'info');
+                addLog(`🕐 将等待到13:15:55开始抢票 (还需等待${timeCheck.waitText})`, 'warning');
+            }
+            
             // 创建倒计时显示
             const countdownInterval = setInterval(() => {
                 const currentCheck = checkBookingTime();
@@ -2947,3 +2979,4 @@
     }
 
 })();
+
