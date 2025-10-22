@@ -2439,7 +2439,7 @@
         const seconds = now.getSeconds();
 
         // 检查是否在12:25-12:30之间
-        if (hours === 12 && minutes >= 25 && minutes < 30) {
+        if ((hours === 11 && minutes >= 30) || (hours === 12 && minutes < 30)) {
             const targetTime = new Date();
             targetTime.setHours(12, 29, 55, 0); // 设置为12:29:55
 
@@ -2493,7 +2493,7 @@
 
         if (timeCheck.shouldWait) {
             if (hours === 12 && minutes >= 25 && minutes < 30) {
-                addLog(`⏰ 检测到当前时间在12:25-12:30之间`, 'info');
+                addLog(`⏰ 检测到当前时间在11:30-12:30之间`, 'info');
                 addLog(`🕐 将等待到12:29:55开始抢票 (还需等待${timeCheck.waitText})`, 'warning');
             }
 
@@ -2979,4 +2979,5 @@
     }
 
 })();
+
 
